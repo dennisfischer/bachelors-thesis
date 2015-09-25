@@ -34,3 +34,5 @@
 *.vrb
 *.xdy
 *.tdo
+*.pdf
+_minted-thesis/
