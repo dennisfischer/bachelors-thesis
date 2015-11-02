@@ -6,7 +6,7 @@
 \usepackage{graphicx}
 \usepackage{import}
 \usepackage{listings}
-\usepackage{minted}
+%\usepackage{minted}
 \usepackage{url}
 
 \usepackage[
@@ -19,7 +19,6 @@
     pdfsubject={TBD},
     pdfkeywords={dll injection, code injection, injection, code cave, nop, nop hopping, memory, tampering, detection, dll}
 ]{hyperref}
-
 \usepackage{sections/_meta/tumlogo}
 
 % Don't display "References" when rendering the bibliography
@@ -41,7 +40,6 @@
 \def\date{Februar 15, 2016}
 
 \begin{document}
-
 \include{sections/_meta/cover}
 \include{sections/_meta/page-1}
 \include{sections/_meta/single-handed-composition}
@@ -62,11 +60,12 @@
 
 \include{sections/motivation/motivation}
 % PUT Content here!
+\include{sections/implementation/implementation}
 
+% References
 \section{References}
 \bibliography{references}
 \bibliographystyle{plain}
-
 % PUT Appendix here!
 
 \end{document}

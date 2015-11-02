@@ -1,0 +1,62 @@
+﻿% This file was created with Citavi 5.2.0.8
+
+@inproceedings{msdetours,
+ abstract = {Innovative systems research hinges on the ability to easily instrument and
+
+extend existing operating system and application functionality. With access to
+
+appropriate source code, it is often trivial to insert new instrumentation or
+
+extensions by rebuilding the OS or application. However, in today's world of
+
+commercial software, researchers seldom have access to all relevant source code.
+
+We present Detours, a library for instrumenting arbitrary Win32 functions on x86
+
+machines. Detours intercepts Win32 functions by re-writing target function
+
+images. The Detours package also contains utilities to attach arbitrary DLLs and
+
+data segments (called payloads) to any Win32 binary. While prior researchers have
+
+used binary rewriting to insert debugging and profiling instrumentation, to our
+
+knowledge, Detours is the first package on any platform to logically preserve the
+
+un-instrumented target function (callable through a trampoline) as a subroutine
+
+for use by the instrumentation. Our unique trampoline design is crucial for
+
+extending existing binary software. We describe our experiences using Detours to
+
+create an automatic distributed partitioning system, to instrument and analyze
+
+the DCOM protocol stack, and to create a thunking layer for a COM-based OS API.
+
+Micro-benchmarks demonstrate the efficiency of the Detours library.{\textless}/p{\textgreater}},
+ author = {Hunt, Galen and Brubacher, Doug},
+ title = {Detours: Binary Interception of Win32 Functions},
+ url = {\url{http://research.microsoft.com/apps/pubs/default.aspx?id=68568}},
+ pages = {8},
+ publisher = {USENIX},
+ booktitle = {Third USENIX Windows NT Symposium},
+ year = {1999}
+}
+
+
+@misc{msdn_appinitdlls,
+ abstract = {},
+ author = {Microsoft},
+ title = {AppInit{\_}DLLs in Windows 7 and Windows Server 2008 R2},
+ howpublished = {\url{https://msdn.microsoft.com/de-de/library/windows/desktop/dd744762(v=vs.85).aspx}}
+}
+
+
+@proceedings{usenix1999,
+ abstract = {},
+ year = {1999},
+ title = {Third USENIX Windows NT Symposium},
+ publisher = {USENIX}
+}
+
+
