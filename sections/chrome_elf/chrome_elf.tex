@@ -1,0 +1,5 @@
+\section{Chrome ELF DLL}
+Google Chrome contains a built in chrome\_elf.dll file that serves various important and security relevant functions. The main three functionalities are export of functions, caching of function addresses of important DLL files and a built in DLL blacklist. Chrome ELF is the very first loaded module in Chrome and could be used to imply more security features like setting a process security descriptor\footnote{This concept is evaluated later in chapter \ref{sec:implementation_dacl}}, however - as Google's development team states - they aren't interested in protecting Chrome from user-mode injection\cite{chromium_security}. This is due to the reason, that a malicious process running under the same process could employ any modification that cannot be prevented by Chrome itself. The user should rely on his installed anti-virus software to detect and prevent attacks.
+\input{sections/chrome_elf/exported_functions}
+\input{sections/chrome_elf/cached_function_addresses}
+\input{sections/chrome_elf/dll_blacklist}
