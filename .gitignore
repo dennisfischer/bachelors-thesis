@@ -35,4 +35,4 @@
 *.xdy
 *.tdo
 *.pdf
-_minted-thesis/
+_minted-thesis/.svn/
