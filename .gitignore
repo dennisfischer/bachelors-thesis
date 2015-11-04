@@ -36,3 +36,4 @@
 *.tdo
 *.pdf
 _minted-thesis/.svn/
+.svn/
