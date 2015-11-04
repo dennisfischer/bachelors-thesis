@@ -1,0 +1,1 @@
+This directory contains all visual studio projects created during research and development of this thesis.
