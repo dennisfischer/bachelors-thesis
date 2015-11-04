@@ -10,3 +10,6 @@
 [submodule "SourceCode/TLS-Callback"]
 	path = SourceCode/TLS-Callback
 	url = git@github.com:dennisfischer/TLS-Callback.git
+[submodule "SourceCode/ProcessProtectionDriver"]
+	path = SourceCode/ProcessProtectionDriver
+	url = git@github.com:dennisfischer/ProcessProtectionDriver.git
