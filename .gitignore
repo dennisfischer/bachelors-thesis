@@ -35,5 +35,5 @@
 *.xdy
 *.tdo
 *.pdf
-_minted-thesis/.svn/
+_minted-thesis/
 .svn/
