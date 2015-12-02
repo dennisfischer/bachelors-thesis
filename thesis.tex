@@ -8,6 +8,7 @@
 \usepackage{listings}
 %\usepackage{minted}
 \usepackage{url}
+%\usepackage[toc]{glossaries}
 
 \usepackage[
 	% Prevent hyperlinks from getting an ugly border
@@ -38,6 +39,7 @@
 \def\germantitle{Erkennen von Prozess Speichermanipluationen}
 \def\author{Dennis Fischer}
 \def\date{Februar 15, 2016}
+%\loadglsentries[main]{sections/glossaries/glossaries.tex}
 
 \begin{document}
 \include{sections/_meta/cover}
@@ -58,10 +60,16 @@
 \pagestyle{plain}
 \setcounter{page}{1}
 
+% PUT Content here!
+\include{sections/introduction/introduction}
 \include{sections/motivation/motivation}
 \include{sections/chrome_elf/chrome_elf}
-% PUT Content here!
+\include{sections/background/background}
 \include{sections/implementation/implementation}
+\include{sections/evaluation/evaluation}
+\include{sections/futurework/futurework}
+
+% Glossar
 
 % References
 \section{References}

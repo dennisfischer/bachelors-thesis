@@ -1,0 +1,10 @@
+Title:
+	Overview of illegal memory modifications - Attacks and Defenses
+
+Abstract:
+	The presentation "Overview of illegal memory modifications - Attacks and Defenses" focuses on Process Memory Tampering (PMT), 
+	which has always been existent and as such can be exploited easily for malicious activities. It is very commonly used in game cheating
+	but can be applied to any application running on a windows computer, e.g. Browser Hijacking of Google Chrome.
+	Possible attacks and defenses are shown and existing defenses like ASLR, DEP and MIC are evaluated against PMT.
+	The results of the current research will be extended into a thesis about PMT Detection focusing on Google Chrome and Browser Hijacking
+	on a Windows 7 machine.
