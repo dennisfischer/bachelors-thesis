@@ -9,6 +9,7 @@
 \usepackage{minted}
 \usepackage{caption}
 \usepackage{url}
+\usepackage{courier}
 
 \usepackage[
 	% Prevent hyperlinks from getting an ugly border
@@ -28,13 +29,14 @@
 % Use appropriate font size for line numbers in listings
 \renewcommand{\theFancyVerbLine}{{\small\arabic{FancyVerbLine}}}
 \lstset{basicstyle=\ttfamily}
-\newcommand{\code}[1]{\texttt{#1}}
 
 \newcommand{\codefile}[2]{
 \inputminted[breakanywhere, breaklines,fontsize=\scriptsize, frame=single, mathescape, linenos, numbersep=5pt, numbersep=5pt, xleftmargin=0pt]{c}{SourceCode/\detokenize{#1#2}}
 \captionof{listing}{Code from \detokenize{#2}}
 \label{code:\detokenize{#2}}
 }
+
+\newcommand{\syscall}[1]{\texttt{#1}}
 
 
 \setlength{\footnotesep}{0.4cm}
@@ -48,6 +50,7 @@
 
 
 \begin{document}
+\sloppy
 \include{sections/_meta/cover}
 \include{sections/_meta/page-1}
 \include{sections/_meta/single-handed-composition}
