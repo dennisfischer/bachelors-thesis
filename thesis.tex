@@ -5,6 +5,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
 \usepackage{import}
+\usepackage{listings}
 \usepackage{minted}
 \usepackage{caption}
 \usepackage{url}
@@ -26,7 +27,7 @@
 
 % Use appropriate font size for line numbers in listings
 \renewcommand{\theFancyVerbLine}{{\small\arabic{FancyVerbLine}}}
-
+\lstset{basicstyle=\ttfamily}
 \newcommand{\code}[1]{\texttt{#1}}
 
 \newcommand{\codefile}[2]{
