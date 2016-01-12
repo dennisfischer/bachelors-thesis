@@ -5,8 +5,8 @@
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
 \usepackage{import}
-\usepackage{listings}
 \usepackage{minted}
+\usepackage{caption}
 \usepackage{url}
 
 \usepackage[
@@ -27,8 +27,14 @@
 % Use appropriate font size for line numbers in listings
 \renewcommand{\theFancyVerbLine}{{\small\arabic{FancyVerbLine}}}
 
-\lstset{basicstyle=\ttfamily}
 \newcommand{\code}[1]{\texttt{#1}}
+
+\newcommand{\codefile}[1]{
+\inputminted[breakanywhere, breaklines,fontsize=\scriptsize, frame=single, mathescape, linenos, numbersep=5pt, numbersep=5pt, xleftmargin=0pt]{c}{SourceCode/ProcessProtectionDriver/ProcessProtectionDriver/\detokenize{#1}}
+\captionof{listing}{Code from ProcessProtectionDriver/\detokenize{#1}}
+\label{code:\detokenize{#1}}
+}
+
 
 \setlength{\footnotesep}{0.4cm}
 \setlength{\skip\footins}{0.5cm}
