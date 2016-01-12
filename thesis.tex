@@ -29,10 +29,10 @@
 
 \newcommand{\code}[1]{\texttt{#1}}
 
-\newcommand{\codefile}[1]{
-\inputminted[breakanywhere, breaklines,fontsize=\scriptsize, frame=single, mathescape, linenos, numbersep=5pt, numbersep=5pt, xleftmargin=0pt]{c}{SourceCode/ProcessProtectionDriver/ProcessProtectionDriver/\detokenize{#1}}
-\captionof{listing}{Code from ProcessProtectionDriver/\detokenize{#1}}
-\label{code:\detokenize{#1}}
+\newcommand{\codefile}[2]{
+\inputminted[breakanywhere, breaklines,fontsize=\scriptsize, frame=single, mathescape, linenos, numbersep=5pt, numbersep=5pt, xleftmargin=0pt]{c}{SourceCode/\detokenize{#1#2}}
+\captionof{listing}{Code from \detokenize{#2}}
+\label{code:\detokenize{#2}}
 }
 
 
