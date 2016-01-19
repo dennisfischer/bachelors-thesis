@@ -1,0 +1,11 @@
+\subsubsection{Registry}
+Storing important configuration data on Windows is done through the so called Registry. The registry stores information on a key-value basis and all configuration of Windows and most applications can be found in it. This has one major advantage in performance compared to the classic approach to store configuration information in \syscall{INI} files, because the data doesn't need to be parsed and transformed into binary format. Additionally, the registry improves handling of multi user setups, which is hardly possible with a single \syscall{INI} file. To give the registry an initial layout, six major groups are defined.
+\begin{itemize}
+\item HKEY\_LOCAL\_MACHINE
+\item HKEY\_CURRENT\_CONFIG 
+\item HKEY\_CLASSES\_ROOT 
+\item HKEY\_CURRENT\_USER 
+\item HKEY\_USERS
+\item HKEY\_PERFORMANCE\_DATA (invisble)
+\end{itemize}
+To access this registry by a user, the \syscall{regedit.exe} program can be used. Of the given six groups, only five can actually be seen, as the \syscall{HKEY\_PERFORMANCE\_DATA} is invisible in the registry editor. Some keys may require additional permissions like Administrator privileges to be accessible and changeable. This follows the previously explained security descriptor concept of Windows.

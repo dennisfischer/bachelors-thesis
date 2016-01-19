@@ -1,0 +1,12 @@
+\subsubsection{Security Descriptor}
+\label{sec:sd}
+To create an access hierarchy, different permissions are created during the installation of a Windows system. These include the current user account which typically is running without elevated permissions, a group for administrator permissions and one user account containing the root permissions, also known as \syscall{NT-Authority}. Windows allows to assign a special structure, the security descriptor, to various different objects. As different users have different access rights, multiple of these security descriptors are organized in access control list, which are by default denying access if it wasn't granted. Objects a security descriptor can be assigned to are \cite{msdn_sd}:
+\begin{itemize}
+\item Files or directories
+\item Registry keys
+\item Named and anonymous pipes
+\item Processes and threads
+\item Access tokens
+\item Windows Services
+\item Job objects
+\end{itemize}
