@@ -1,4 +1,5 @@
 \section{Design and Implementation}
+The upcoming Design and Implementation chapter describes possible countermeasures to the previously shown attacks. The best working one is then being implemented.
 \label{sec:implementation}
 The previous chapter showed that many different attacks still exists, that can't be prevented by the existing defenses. These attacks can be classified into two groups that have to be handled separately in order to increase security on the target platform. Attacks from outside the process virtual memory have to use \syscall{WriteProcessMemory}, which forms the first group and attacks from inside are relying on a DLL load during their initialization and execute their malicious code from inside, which form the second group. This classification makes it possible to design effective defenses that can't be circumvented. 
 
