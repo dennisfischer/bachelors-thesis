@@ -10,6 +10,12 @@ Most injection techniques call at some point in time the two important \syscall{
 Implementing this approach works great in a test application seen in \ref{appendix:dacl}, however once added to Google Chrome, Chrome malfunctions and is no longer usable. The reason for that is Chrome's process hierarchy and the dependence on inter process communication with \syscall{WriteProcessMemory} and \syscall{ReadProcessMemory}. Compiling chromium with the shown DACL Deny code results in a running executable that is at the end not fully functioning. The content of the browser is not displayed and opening web pages fail, returning to the current open about:blank page immediately. Therefore a different approach has to be taken to limit virtual memory modification with \syscall{WriteProcessMemory}.
 
 \subsection{Blocking \syscall{WriteProcessMemory} with a kernel mode driver}
+\begin{figure}[h]
+\centering
+\includegraphics[angle=90,scale=0.6]{sections/implementation/interaction.png}
+\caption{The interaction of the drivers components.}
+\label{fig:interaction}
+\end{figure}
 The newly created problem with the modified ACL can be solved by creating a driver running in kernel-mode. As reading memory, checking files and running processes are a common problem when writing anti virus software, Microsoft introduced object manager routines since Windows Vista to provide an efficient way of reacting onto these events. A driver will then use \syscall{ObRegisterCallbacks} to get notified whenever processes are created, files are opened and images (DLLs and EXEs) are loaded. This functionality offers the programmer to create a pre- and post-execution callback function, that gets called whenever a process tries to receive a process handle. Microsoft offers an example driver using \syscall{ObRegisterCallbacks} at \cite{github_obcallback} and shows how to modify the requested process handle permissions to prevent termination by other applications such as the task manager. 
 
 In order to protect chrome, the same actions described earlier will now be taken from inside the driver. Newly created process handles will be restricted to non virtual memory modifying permissions and the existing problem with inter process communication can be resolved by not restricting chromes child processes explicitly and giving them a full access handle. \ref{appendix:driver} shows an implemented driver to fulfill the requirements. A demonstration video of the resulting implementation can be found in the contained digital materials.
