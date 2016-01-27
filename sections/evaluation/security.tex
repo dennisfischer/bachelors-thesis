@@ -2,7 +2,7 @@
 \begin{figure}[h]
 \centering
 \includegraphics[angle=90,scale=0.3]{sections/adtrees/ExternalModifications.png}
-\caption{The attack tree of Figure \ref{fig:attacks_external} with the added countermeasures.}
+\caption{The attack tree of Figure \ref{fig:attacks_external} with the added countermeasures}
 \label{fig:attacks_external_def}
 \end{figure}
 The previously shown Figure \ref{fig:attacks} can be used as a basis for a security evaluation. To ensure that all attacks are no longer working, at least one countermeasure needs to be present, starting again with the external attacks of Figure \ref{fig:attacks_external}. The given \syscall{WriteProcessMemory} call is blocked by the driver due to the \syscall{ObCallback} function. It is no longer possible to acquire a process handle with sufficient permissions and therefore all calls to \syscall{WriteProcessMemory} will fail. Due to the drivers internal structure that keeps track of the created processes, it is possible to keep up the inter process communication between the chrome.exe processes. 
@@ -11,18 +11,12 @@ The second shown attack group, the DLL injections which consists of several diff
 
 The third shown attack, the buffer overflows, haven't been tackled by the driver. This is due to the nature of how buffer overflows work and the impossibility to detect them from a compiled program. In contrast to the first two attack groups, defenses are already existing and have been outlined in previous the Section \ref{sec:defenses}.
 
-The result of these countermeasures and additional possible countermeasures can be seen in the updated attack defense tree in Figure \ref{fig:attacks_external_def}. This leaves the second way of modifications, the internal one still open! Figure \ref{fig:attacks_internal} showed the attack tree of the internal modifications. However, these ways are indirectly blocked by the external modifications. As the attacker is no longer able to get inside the target process, because all external modifications are no longer working, it is impossible to get an internal modification. Therefore, Figure \ref{fig:attacks_internal_def} shows the updated attack defense tree for internal modifications, and the combined version can be seen in Figure \ref{fig:attacks_def}.
+The result of these countermeasures and additional possible countermeasures can be seen in the updated attack defense tree in Figure \ref{fig:attacks_external_def}. This leaves the second way of modifications, the internal one still open. Figure \ref{fig:attacks_internal} showed the attack tree of the internal modifications. However, these ways are indirectly blocked by the external modifications. As the attacker is no longer able to get inside the target process, because all external modifications are no longer working, it is impossible to get an internal modification. Therefore, Figure \ref{fig:attacks_internal_def} shows the updated attack defense tree for internal modifications.
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.25]{sections/adtrees/InternalModifications.png}
-\caption{The attack tree of Figure \ref{fig:attacks_internal} with the added countermeasures.}
+\caption{The attack tree of Figure \ref{fig:attacks_internal} with the added countermeasures}
 \label{fig:attacks_internal_def}
-\end{figure}
-\begin{figure}[h]
-\centering
-\includegraphics[angle=90,scale=0.3]{sections/adtrees/ProcessVirtualMemory.png}
-\caption{The attack tree of Figure \ref{fig:attacks} with the added countermeasures.}
-\label{fig:attacks_def}
 \end{figure}
 
 To get a better understanding of the internal structures and resulting security of the driver and its weaknesses, a look at the three main parts, the process tree, the \syscall{WriteProcessMemory} block and the DLL load block is taken.
@@ -34,8 +28,8 @@ A second attack on the process tree might involve changing the attacking executa
 
 At last, the tree can't be changed from user mode, because the driver is running in kernel mode and user mode processes don't have access to the virtual memory of the driver. By that, the process tree structure can be considered as secure. This result directly leads to the security evaluation of the registered callback to prevent attacks via \syscall{WriteProcessMemory}. The permissions are by default removed, unless one of the following condition holds:
 \begin{itemize}
-\item Opened and Current process are equal -> self access
-\item Opened and Current process pids are equal -> self access
+\item Opened and Current process are equal, it is a self access
+\item Opened and Current process pids are equal, it is a self access
 \item Opened and Current process share the same pid according to the process tree
 \end{itemize}
 The first two points are quiet logical, as the process might call \syscall{WriteProcessMemory} on itself and this modification has to be allowed in all cases. The third point forces the driver to check the existing process tree structure. The results of a \syscall{FindPidInTree} call on opened and current process need to be equal, or otherwise no access can be granted. Due to the fact, that the process tree structure has already been evaluated and was considered secure, \syscall{WriteProcessMemory} is also blocked in all not allowed cases. 
