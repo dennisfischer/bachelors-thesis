@@ -1,4 +1,4 @@
-\subsection{Blocking \syscall{WriteProcessMemory} with an Access Control Entry}
+\subsubsection{Blocking \syscall{WriteProcessMemory} with an Access Control Entry}
 \label{sec:dacl}
 Most injection techniques call the Windows API function \syscall{OpenProcess} and subsequently \syscall{WriteProcessMemory} to inject code into or modify memory in the remote process. It is not possible to easily intercept these calls from inside a user-mode process, as the process is suspended during the \syscall{WriteProcessMemory} function call and will deadlock the application.
 
