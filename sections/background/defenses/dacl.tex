@@ -1,0 +1,11 @@
+\subsection{Blocking \syscall{WriteProcessMemory} with an Access Control Entry}
+\label{sec:dacl}
+Most injection techniques call the Windows API function \syscall{OpenProcess} and subsequently \syscall{WriteProcessMemory} to inject code into or modify memory in the remote process. It is not possible to easily intercept these calls from inside a user-mode process, as the process is suspended during the \syscall{WriteProcessMemory} function call and will deadlock the application.
+
+\medskip
+
+To prevent this function call from completing and preventing the exploit, an access control entry (ACE) can be used. An ACE is part of a bigger structure called access control list (ACL), which contains multiple access control entries. Whenever permissions for a windows object is requested, the ACL will get evaluated. The list of windows objects that make use of ACLs can be found in Section \ref{sec:sd}. The ACE limits the process access rights and removes the required permissions to call virtual memory modifying functions like \syscall{WriteProcessMemory} and \syscall{ReadProcessMemory}. The \syscall{OpenProcess} function will then not be able to return a handle with the required permissions and calls to \syscall{WriteProcessMemory} will fail with \syscall{STATUS\_ACCESS\_DENIED} error code.
+
+\medskip
+
+Implementing this approach works in a test application seen in Appendix \ref{appendix:dacl}, however once added to Google Chrome, Chrome malfunctions and is no longer usable. The reason for that is Chrome's process hierarchy and the dependence on inter process communication with \syscall{WriteProcessMemory} and \syscall{ReadProcessMemory}. Compiling Chromium with a access control entry that denies virtual memory modifying access results in a running Chromium browser that is not fully functioning. The content of the browser is not displayed and opening web pages fail, returning to the current open about:blank page immediately. Therefore a different approach has to be taken to limit virtual memory modification with \syscall{WriteProcessMemory}.

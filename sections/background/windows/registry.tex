@@ -3,10 +3,20 @@ Storing important configuration data on Windows is done through the so called Re
 \begin{itemize}
 \label{sec:registrykeys}
 \item HKEY\_LOCAL\_MACHINE
-\item HKEY\_CURRENT\_CONFIG 
-\item HKEY\_CLASSES\_ROOT 
+
+Contains information about the computer configuration
+\item HKEY\_CURRENT\_CONFIG
+
+Contains information about the used hardware
+\item HKEY\_CLASSES\_ROOT
+
+Is a subkey of HKEY\_LOCAL\_MACHINE\\Software and contains file extension associations
 \item HKEY\_CURRENT\_USER 
+
+Contains the profile of the currently logged on user
 \item HKEY\_USERS
+
+Contains the profiles of all active users
 \item HKEY\_PERFORMANCE\_DATA (invisble in \syscall{regedit.exe})
 \end{itemize}
 To access this registry by a user, the \syscall{regedit.exe} \cite{msdn_regedit} program can be used. Of the given six groups, only five can actually be seen, as the \syscall{HKEY\_PERFORMANCE\_DATA} is invisible in the registry editor. Some keys may require additional permissions like Administrator privileges to be accessible and changeable. This is a result of the previously explained security descriptor in Section \ref{sec:sd}.
