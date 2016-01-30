@@ -1,1 +1,37 @@
 \subsection{Performance}
+This section evaluates the performance of the driver and shows the impact on the Google Chrome browser. At first, the impact on Chrome is measured. Then, the time needed for hashing a DLL file is measured. The following table shows the used hardware on the host computer.
+
+\subsubsection{Hardware and experiment setup}
+The performance measurement was done in a virtual machine running Windows 7 64 bit. Table \ref{fig:hardware_host} shows the hardware used for the host computer. Table \ref{fig:hardware_vm} shows the hardware assigned to the virtual machine.
+\def\arraystretch{1.1}% 
+
+\begin{table}[]
+\centering
+\begin{tabular}{| l | l |}
+\hline
+Component & Used Hardware \\ \hline
+CPU & Intel i7-2600k @ 3.5 GHz, 4 cores, 8 threads \\ \hline
+RAM & 4 * 4 GB @ 1600 MHz \\ \hline
+MAINBOARD & Asus P8Z68 deluxe/gen3 \\ \hline
+SSD 1 & Mushkin Chronos 120 GB, 500 MB/s \\ \hline
+SSD 2 & San Disk Pro 480 GB, 500 MB/s \\ \hline
+RAID 1 & 2x Western Digital Caviar Green 2.5 TB, 170 MB/s \\ \hline
+\end{tabular}
+\caption{Hardware of the host system}
+\label{fig:hardware_host}
+\end{table}
+
+\begin{table}[]
+\centering
+\begin{tabular}{| l | l |}
+\hline
+Component & Used Hardware \\ \hline
+CPU & Intel i7-2600k @ 3.5 GHz, 1 core, 2 threads \\ \hline
+RAM & 4 GB @ 1600 MHz \\ \hline
+MAINBOARD & Asus P8Z68 deluxe/gen3 \\ \hline
+RAID 1 & 2x Western Digital Caviar Green 2.5 TB, 170 MB/s \\ \hline
+\end{tabular}
+\caption{Hardware of the virtual machine}
+\label{fig:hardware_vm}
+\end{table}
+\input{sections/evaluation/performance/experiment1.tex}
