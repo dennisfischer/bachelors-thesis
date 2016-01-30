@@ -1,0 +1,5 @@
+\subsubsection{\syscall{WriteProcessMemory} external modifications}
+\syscall{WriteProcessMemory} is just like the previously discussed \syscall{SetWindowsHookEx} a function available through the Windows API. This function allows to write into the virtual memory of a target process and allows modifying existing data or code. There are several ways to make use of this function, one of them being DLL injection with the \syscall{CreateRemoteThread} and \syscall{LoadLibrary} functions. 
+\input{sections/background/attacks/writeprocessmemory/createremotethread.tex}
+\input{sections/background/attacks/writeprocessmemory/writeprocessmemory.tex}
+\input{sections/background/attacks/writeprocessmemory/function_detouring.tex}

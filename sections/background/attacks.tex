@@ -2,11 +2,14 @@
 This subsection will deal with existing attacks that can be used to gain control over a process, allowing to change values and code in memory as well as controlling which parts are executed. 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.35]{sections/adtrees/ExternalModificationsWithoutDefenses.png}
+\includegraphics[width=\textwidth,keepaspectratio]{sections/adtrees/ExternalModificationsWithoutDefenses.png}
 \caption{This attack tree shows all possible external attacks to the original software}
 \label{fig:attacks_external}
 \end{figure}
 \input{sections/background/attacks/appinit_dlls.tex}
 \input{sections/background/attacks/setwindowshookex.tex}
-\input{sections/background/attacks/direct_memory_modification.tex}
+\input{sections/background/attacks/dll_replacement.tex}
+\input{sections/background/attacks/writeprocessmemory.tex}
+\input{sections/background/attacks/buffer_overflows.tex}
+\input{sections/background/attacks/internal_modifications.tex}
 \input{sections/background/attacks/fig_attacks.tex}
