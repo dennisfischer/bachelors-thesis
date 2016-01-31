@@ -1,5 +1,7 @@
 \section{Design and Implementation}
 The upcoming Design and Implementation chapter describes possible countermeasures to the previously shown attacks. The best working one is then being implemented.
+\input{sections/implementation/requirements.tex}
+\subsection{Implementation}
 \label{sec:implementation}
 The previous chapter showed that many different attacks without exist, that can not be prevented by the existing defenses. These attacks can be classified into two groups that have to be handled separately in order to increase security on the target platform. Attacks to the process virtual memory that have to use \gls{WPM}, which form the first group and attacks that are relying on a \gls{DLL} load during their initialization to execute their malicious code from inside, which form the second group. This classification makes it possible to design effective countermeasures that can not be circumvented. 
 
