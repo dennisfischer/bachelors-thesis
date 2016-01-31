@@ -1,3 +1,73 @@
 \subsubsection{Experiment 1}
-In Experiment 1 the impact on Google Chrome is measured.
+In Experiment 1 the impact of the implemented driver on Google Chrome is measured. The internal structure of the driver was used to create the four main groups of measurement, without the driver, with the \syscall{WriteProcessMemory} component, with the DLL load component and with both components. This test was then done for 1, 2, 4, 8 and 16 opened tabs and data was obtained for a duration of 1, 2, 4, 8 and 16 minutes of runtime. The measurement was done with Google Chrome's internal profiler\footnote{\url{chrome://profiler}}. In total this results in 200 data files obtained through the profiler which was then used to evaluate the performance decrease. The resulting 200 data files are merged with five different operations, minimum, maximum, median, mean and sum of all values. The titles of the resulting plots have been abbreviated to their respective function names. Each data file contains seven different information that can be found in Table \ref{fig:ex1_info}, the number of tasks executed (count), the total, average and maximum queue- and runtime. Considering the implementation of the driver, this experiment should show that the execution without the driver is faster.
 
+\begin{table}
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+Information & Meaning \\ \hline
+Count & The number of tasks that were executed. \\ \hline
+Queuetime & The time between task creation and its execution in milliseconds. \\ \hline
+Runtime & The time required to execute the task in milliseconds. \\ \hline
+Total & The sum of all values. \\ \hline
+Maximum & The maximum of all values. \\ \hline
+Average & The quotient of total and count \\ \hline
+\end{tabularx}
+\caption{Description of measured information}
+\label{fig:ex1_info}
+\end{table}
+\begin{figure}[!htbp]
+	\centering
+    \includegraphics[width=\textwidth,keepaspectratio]{Evaluation/experiment1/AVG-COUNT-1.png}
+    \caption{Average count, 1 minute of data}
+    \label{fig:ex1_avgcount_1}
+\end{figure}
+\begin{figure}[!htbp]
+	\centering
+    \includegraphics[width=\textwidth,keepaspectratio]{Evaluation/experiment1/AVG-COUNT-16.png}
+    \caption{Average count, 16 minutes of data}
+    \label{fig:ex1_avgcount_16}
+\end{figure}
+Figure \ref{fig:ex1_avgcount_1} shows the average count of tasks that were executed over one minute. Running both components, \emph{DLL+WPM}, is the slowest of all four configurations, because the average number of executed tasks is the lowest. \emph{WPM} and the \emph{Not Running} are almost equal with \emph{WPM} being one task slower in for two and fours tabs. However, \emph{DLL} is an outlier in this plot, because it is faster at 16 tabs compared to all other configuration and just as slow a \emph{DLL+WPM} for one tab. Figure \ref{fig:ex1_avgcount_16} shows the same measurement for a duration of 16 minutes. The result is the same as of Figure \ref{fig:ex1_avgcount_1} with the outlier \emph{DLL} being removed. The comparison between both plots show that there is not much of a difference between a one and 16 minute measurement, but the 16 minute measurements give more accurate results.
+\begin{figure}[!htbp]
+	\centering
+    \includegraphics[width=\textwidth,keepaspectratio]{Evaluation/experiment1/AVG-QUEUETIME-MAX-1.png}
+    \caption{Average of the maximum queuetime, 1 minute of data}
+    \label{fig:ex1_avgqueuetimemax_1}
+\end{figure}
+\begin{figure}[!htbp]
+	\centering
+    \includegraphics[width=\textwidth,keepaspectratio]{Evaluation/experiment1/AVG-QUEUETIME-MAX-16.png}
+    \caption{Average of the maximum queuetime, 16 minutes of data}
+    \label{fig:ex1_avgqueuetimemax_16}
+\end{figure}
+This property of Chrome being faster (executing more task) without a driver running can be seen too in the next two Figures \ref{fig:ex1_avgqueuetimemax_1} and \ref{fig:ex1_avgqueuetimemax_16}. These graphs show the average of the maximum queuetime. The y-axis shows the average number of milliseconds a task was waiting for execution. Again, two groups form, \emph{Not Running} with \emph{WPM} and \emph{DLL} and \emph{DLL+WPM}. Tasks without running driver queue in average longer than tasks with running driver. The reason for that is \emph{Not running} executes more tasks, which leads to some tasks queuing longer because Chrome is busy with running other tasks. Accordingly, the average queuetime for the DLL component and both components running is lower, because less tasks are executed and Chrome is less busy with task execution. Again, there is not much of a difference between a one and 16 minute measurement and the 16 minute measurement is representing the data with less deviation.
+\begin{figure}[!htbp]
+	\centering
+    \includegraphics[width=\textwidth,keepaspectratio]{Evaluation/experiment1/AVG-RUNTIME-MAX-1.png}
+    \caption{Average of the maximum runtime, 1 minute of data}
+    \label{fig:ex1_avgruntimemax_1}
+\end{figure}
+\begin{figure}[!htbp]
+	\centering
+    \includegraphics[width=\textwidth,keepaspectratio]{Evaluation/experiment1/AVG-RUNTIME-MAX-16.png}
+    \caption{Average of the maximum runtime, 16 minutes of data}
+    \label{fig:ex1_avgruntimemax_16}
+\end{figure}
+Figure \ref{fig:ex1_avgruntimemax_1} and Figure \ref{fig:ex1_avgruntimemax_16} show the average of the maximum runtime of all tasks for one and 16 minutes. The results of this plots are similar to Figure \ref{fig:ex1_avgqueuetimemax_1} and Figure \ref{fig:ex1_avgqueuetimemax_16}. The average runtime of \emph{Not Running} and \emph{WPM} is higher than \emph{DLL} and \emph{DLL+WPM}. This is again a result of the higher number of tasks executed and Chrome being already busy executing other tasks. Additionally, tasks are waiting for other tasks to be finished with execution, extending the runtime.
+\begin{figure}[!htbp]
+	\centering
+    \includegraphics[width=\textwidth,keepaspectratio]{Evaluation/experiment1/AVG-RUNTIME-AVG-1.png}
+    \caption{Average of the average runtime, 1 minute of data}
+    \label{fig:ex1_avgruntimeavg_1}
+\end{figure}
+\begin{figure}[!htbp]
+	\centering
+    \includegraphics[width=\textwidth,keepaspectratio]{Evaluation/experiment1/AVG-RUNTIME-AVG-16.png}
+    \caption{Average of the average runtime, 16 minutes of data}
+    \label{fig:ex1_avgruntimeavg_16}
+\end{figure}
+At the end of this experiment, a look is taken at the average of the average runtime of a task. This data is shown in Figure \ref{fig:ex1_avgruntimeavg_1} for one minute and Figure \ref{fig:ex1_avgruntimeavg_16} for 16 minutes. The result is, that there is in average no difference between running the driver and not running it. For both Figures, the average runtimes are zero. This means, because the runtimes are using rounded values, the execution took less than 0.50 milliseconds in average.
+
+\medskip
+
+The result of this experiment 1 is, that the driver slows down execution during startup, which increase maximum run- and queuetime. There is no difference during the later usage, as the average of the average runtimes are staying constant. The reason for this performance decrease can be found in the DLL component of the driver, as the other one, the WPM component is running with almost no performance decrease. The DLL component will be evaluated further in experiment 2.
