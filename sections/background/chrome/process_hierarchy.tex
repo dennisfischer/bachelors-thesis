@@ -1,6 +1,6 @@
 \subsubsection{Process hierarchy}
 Google Chrome uses a special process hierarchy to reduce the risk of an attack onto the browser. Chrome create multiple processes to isolate different contexts. A context can represent a (web-)site, a site instance or a tab \cite{chromium_process_models}. Depending on the chosen command line flag, the respective context is chosen an processes are created. To share data between the processes, inter process communication is used.
-\begin{figure}[hbtp]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[scale=0.5]{sections/background/chrome/communication.png}
 \caption{Communication between Browser Kernel and the Rendering Engine. The Rendering Engine is used as a blackbox \cite{chromium_security_architecture}}

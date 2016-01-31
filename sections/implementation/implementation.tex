@@ -4,7 +4,7 @@ The upcoming Design and Implementation chapter describes possible countermeasure
 The previous chapter showed that many different attacks without exist, that can't be prevented by the existing defenses. These attacks can be classified into two groups that have to be handled separately in order to increase security on the target platform. Attacks to the process virtual memory that have to use \syscall{WriteProcessMemory}, which form the first group and attacks that are relying on a DLL load during their initialization to execute their malicious code from inside, which form the second group. This classification makes it possible to design effective countermeasures that can't be circumvented. 
 
 \subsection{Blocking \syscall{WriteProcessMemory} with a kernel mode driver}
-\begin{figure}[h]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[angle=90,scale=0.6]{sections/implementation/interaction.png}
 \caption{The interaction of the drivers components}
