@@ -14,6 +14,7 @@
 \usepackage{tabularx} 
 \usepackage{geometry}
 \usepackage[toc,page]{appendix}
+\usepackage[toc]{glossaries}
 
 \usepackage[
 	% Prevent hyperlinks from getting an ugly border
@@ -53,6 +54,9 @@
 \def\author{Dennis Fischer}
 \def\date{Februar 15, 2016}
 
+
+\loadglsentries{glossary.tex}
+\makeglossaries
 \begin{document}
 \sloppy
 \include{sections/_meta/cover}
@@ -69,10 +73,12 @@
 \newpage
 \pagestyle{empty}
 \tableofcontents
-
 \newpage
 \pagestyle{plain}
 \setcounter{page}{1}
+\newpage
+\printglossaries
+\clearpage
 
 % PUT Content here!
 \include{sections/introduction/introduction}
