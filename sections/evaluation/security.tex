@@ -1,12 +1,4 @@
 \subsection{Security}
-\newgeometry{margin=0mm,headheight=0mm,footskip=0mm,includehead,includefoot}
-\begin{figure*}[tb] 
- \centering
- \makebox[\textwidth]{\includegraphics[angle=90,keepaspectratio,width=.95\paperwidth,height=.85\paperheight]{sections/adtrees/ExternalModifications.png}}
-\caption{The attack tree of Figure \ref{fig:attacks_external} with the added countermeasures}
-\label{fig:attacks_external_def}
-\end{figure*}
-\restoregeometry
 The attacks of Section \ref{sec:attacks} can be used as a basis for a security evaluation. To ensure that all attacks are no longer working, at least one countermeasure needs to be present, starting again with the external attacks of Figure \ref{fig:attacks_external}. The given \gls{WPM} call is blocked by the driver due to the \syscall{ObCallback} function. It is no longer possible to acquire a process handle with sufficient permissions and therefore all calls to \gls{WPM} will fail. Due to the drivers internal structure that keeps track of the created processes, it is possible to keep up the inter process communication between the chrome.exe processes. 
 
 The second shown attack group, the \gls{DLL} injections which consists of several different ways, is blocked by the \syscall{PsSetLoadImageNotifyRoutine} callback. If a \gls{DLL} is about to be executed, its source file is hashed and compared to a whitelist. Only if a match is found, the execution is granted. Otherwise the \gls{DLL} is actively patched and no longer working. This callback function blocks the whole group of \gls{DLL} injections.
@@ -14,13 +6,20 @@ The second shown attack group, the \gls{DLL} injections which consists of severa
 The third shown attack, the buffer overflows, have not been tackled by the driver. This is due to the nature of how buffer overflows work and the difficulty to detect them from a compiled program. In contrast to the first two attack groups, defenses are already existing and have been outlined in previous the Section \ref{sec:defenses}.
 
 The result of these countermeasures and additional possible countermeasures can be seen in the updated attack defense tree in Figure \ref{fig:attacks_external_def}. This leaves the second way of modifications, the internal one still open. Figure \ref{fig:attacks_internal} showed the attack tree of the internal modifications. However, these ways are indirectly blocked by the external modifications. As the attacker is no longer able to get inside the target process, because all external modifications are no longer working, it is impossible to get an internal modification. Therefore, Figure \ref{fig:attacks_internal_def} shows the updated attack defense tree for internal modifications.
-\begin{figure}[!htbp]
+\begin{figure}[htbp]
 \centering
 \includegraphics[scale=0.25]{sections/adtrees/InternalModifications.png}
 \caption{The attack tree of Figure \ref{fig:attacks_internal} with the added countermeasures}
 \label{fig:attacks_internal_def}
 \end{figure}
-
+\newgeometry{margin=0mm,headheight=0mm,footskip=0mm,includehead,includefoot}
+\begin{figure*}[h] 
+ \centering
+ \makebox[\textwidth]{\includegraphics[angle=90,keepaspectratio,width=.95\paperwidth,height=.85\paperheight]{sections/adtrees/ExternalModifications.png}}
+\caption{The attack tree of Figure \ref{fig:attacks_external} with the added countermeasures}
+\label{fig:attacks_external_def}
+\end{figure*}
+\restoregeometry
 To get a better understanding of the internal structures and resulting security of the driver and its weaknesses, a look at the three main parts, the process tree, the \gls{WPM} and the \gls{DLL} load component is taken.
 To measure the security of \gls{WPM}, the underlying process tree structure needs to be looked at. 
 
