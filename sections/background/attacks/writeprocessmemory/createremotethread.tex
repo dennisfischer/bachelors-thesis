@@ -11,7 +11,7 @@ A large enough amount of memory is allocated inside the target process with \sys
 Next \gls{WPM} is used to transfer the \gls{DLL} path into the target memory space.
 
 \paragraph{Step 4}
-Finally the injection can be completed by calling \syscall{CreateRemoteThread}, which loads the \gls{DLL} with the \syscall{LoadLibrary} function. The allocated memory segment is used as a parameter for the \syscall{LoadLibrary} function call. 
+The injection can be completed by calling \syscall{CreateRemoteThread}, which loads the \gls{DLL} with the \syscall{LoadLibrary} function. The allocated memory segment is used as a parameter for the \syscall{LoadLibrary} function call. 
 
 \paragraph{Step 5}
 With the loaded \gls{DLL}, arbitrary code can get executed by the \gls{DLL} inside the attacked process, either via using \syscall{CreateRemoteThread} again or via the \glspl{DLL} entry point.

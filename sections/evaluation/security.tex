@@ -1,11 +1,13 @@
 \subsection{Security}
-\begin{figure}[!htbp]
-\centering
-\includegraphics[angle=90,scale=0.3]{sections/adtrees/ExternalModifications.png}
+\newgeometry{margin=0mm,headheight=0mm,footskip=0mm,includehead,includefoot}
+\begin{figure*}[tb] 
+ \centering
+ \makebox[\textwidth]{\includegraphics[angle=90,keepaspectratio,width=.95\paperwidth,height=.85\paperheight]{sections/adtrees/ExternalModifications.png}}
 \caption{The attack tree of Figure \ref{fig:attacks_external} with the added countermeasures}
 \label{fig:attacks_external_def}
-\end{figure}
-The previously shown Figure \ref{fig:attacks} can be used as a basis for a security evaluation. To ensure that all attacks are no longer working, at least one countermeasure needs to be present, starting again with the external attacks of Figure \ref{fig:attacks_external}. The given \gls{WPM} call is blocked by the driver due to the \syscall{ObCallback} function. It is no longer possible to acquire a process handle with sufficient permissions and therefore all calls to \gls{WPM} will fail. Due to the drivers internal structure that keeps track of the created processes, it is possible to keep up the inter process communication between the chrome.exe processes. 
+\end{figure*}
+\restoregeometry
+The attacks of Section \ref{sec:attacks} can be used as a basis for a security evaluation. To ensure that all attacks are no longer working, at least one countermeasure needs to be present, starting again with the external attacks of Figure \ref{fig:attacks_external}. The given \gls{WPM} call is blocked by the driver due to the \syscall{ObCallback} function. It is no longer possible to acquire a process handle with sufficient permissions and therefore all calls to \gls{WPM} will fail. Due to the drivers internal structure that keeps track of the created processes, it is possible to keep up the inter process communication between the chrome.exe processes. 
 
 The second shown attack group, the \gls{DLL} injections which consists of several different ways, is blocked by the \syscall{PsSetLoadImageNotifyRoutine} callback. If a \gls{DLL} is about to be executed, its source file is hashed and compared to a whitelist. Only if a match is found, the execution is granted. Otherwise the \gls{DLL} is actively patched and no longer working. This callback function blocks the whole group of \gls{DLL} injections.
 

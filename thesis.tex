@@ -28,9 +28,6 @@
 ]{hyperref}
 \usepackage{sections/_meta/tumlogo}
 
-% Don't display "References" when rendering the bibliography
-\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
-
 % Use appropriate font size for line numbers in listings
 \renewcommand{\theFancyVerbLine}{{\small\arabic{FancyVerbLine}}}
 \lstset{basicstyle=\ttfamily}
@@ -50,7 +47,7 @@
 
 \def\doctype{Bachelor's Thesis in Informatics}
 \def\title{Detecting Process Memory Tampering}
-\def\germantitle{Erkennen von Prozess Speichermanipluationen}
+\def\germantitle{Erkennen von Prozess Speichermanipulationen}
 \def\author{Dennis Fischer}
 \def\date{Februar 15, 2016}
 
@@ -71,15 +68,19 @@
 \include{sections/_meta/abstract}
 
 \newpage
-\pagestyle{empty}
-\tableofcontents
-\newpage
 \pagestyle{plain}
-\setcounter{page}{1}
+\pagenumbering{roman}
+\tableofcontents
+\cleardoublepage
+\addcontentsline{toc}{section}{List of Figures}
+\listoffigures
+\addcontentsline{toc}{section}{List of Tables}
+\listoftables
 \newpage
 \printglossaries
 \clearpage
-
+\setcounter{page}{1}
+\pagenumbering{arabic}
 % PUT Content here!
 \include{sections/introduction/introduction}
 \include{sections/background/background}
@@ -88,7 +89,8 @@
 \include{sections/futurework/futurework}
  
 % References
-\section{References}
+\cleardoublepage
+\addcontentsline{toc}{section}{References}
 \bibliography{references}
 \bibliographystyle{plain}
 % PUT Appendix here!
