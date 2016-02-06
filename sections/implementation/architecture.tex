@@ -1,0 +1,32 @@
+\subsection{Design and Architecture}
+The attacks of Section \ref{sec:attacks} can be classified into two groups which have to be handled separately in order to increase security on the target platform. Attacks to the process virtual memory that have to use \gls{WPM}, which form the first group and attacks that are relying on a \gls{DLL} load during their initialization to execute their malicious code from inside, which form the second group. This classification makes it possible to design effective countermeasures that can not be avoided by attacks.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[angle=90,scale=0.6]{sections/implementation/interaction.png}
+\caption{The interaction of the drivers components}
+\label{fig:interaction}
+\end{figure}
+
+\medskip
+
+The classification into the two groups, \gls{DLL} and \gls{WPM}, is used to for the architecture design. Figure \ref{fig:interaction} shows the interacting components in an abstract representation. \emph{Windows} offers three entry points that will get called by the kernel, whenever a process is started, opened or a \gls{DLL} is loaded. The registered callback functions will then need to do several checks on the given information and based on this allow or deny execution. To prevent the group of \gls{WPM} attacks, a WPM callback is registered which checks if the given \gls{PID} is in a whitelist. If it is not, the request is denied by removing the required permissions to execute \gls{WPM} attacks. Because \glspl{PID} are dynamically assigned by the kernel and the possibility of reusing \glspl{PID}, a internal structure, a process tree, needs to be maintained. This thus adds communication between the three callback functions and the process tree as seen in Figure \ref{fig:interaction}. The \syscall{PsSetCreateProcessNotifyRoutine} callback function is called whenever a process is created or destroyed. Accordingly, whenever this callback function is executed, the process is inserted into the process tree structure on process creation, and removed from the process tree structure on process deletion. The process tree hereby maintains a list of lists, which is shown in Figure \ref{fig:listoflists}.
+\begin{figure}[!htbp]
+\centering
+\includegraphics[scale=0.6]{sections/implementation/listoflists.png}
+\caption{The interaction of the drivers components}
+\label{fig:listoflists}
+\end{figure}
+Each list separates the processes parents with their children from other processes. If the process tree gets queried for a specific \gls{PID} the parent \gls{PID} gets returned. To illustrate this interaction, the data of Figure \ref{fig:listoflists} is used for an example. If the process tree is queried with \gls{PID} 3812, a lookup in the process tree occurs to find a process with \gls{PID} 3812. In this case, the process is a child of chrome.exe with \gls{PID} 2460.
+Because process 3812 is a child process, its parent 2460 is returned. For a second example, consider the process tree being queried for \gls{PID} 2460. Another lookup is done and a process with \gls{PID} 2460 is found. Because 2460 is a parent process, the process tree structure returns the value 2460.
+
+
+
+\newgeometry{margin=0mm,headheight=0mm,footskip=0mm,includehead,includefoot}
+\begin{figure*}[tb] 
+ \centering
+ \makebox[\textwidth]{\includegraphics[angle=90,width=.85\paperwidth]{sections/implementation/driver-sequence.png}}
+\caption{Sequence diagram showing the interaction between driver, \emph{Chrome} and the \emph{Windows} kernel}
+\label{fig:sequence}
+\end{figure*}
+\restoregeometry

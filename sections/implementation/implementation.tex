@@ -1,26 +1,11 @@
 \section{Design and Implementation}
 The upcoming Design and Implementation chapter describes possible countermeasures to the previously shown attacks. The best working one is then being implemented.
 \input{sections/implementation/requirements.tex}
+\input{sections/implementation/architecture.tex}
 \subsection{Implementation}
-\label{sec:implementation}
-The previous chapter showed that many different attacks without exist, that can not be prevented by the existing defenses. These attacks can be classified into two groups that have to be handled separately in order to increase security on the target platform. Attacks to the process virtual memory that have to use \gls{WPM}, which form the first group and attacks that are relying on a \gls{DLL} load during their initialization to execute their malicious code from inside, which form the second group. This classification makes it possible to design effective countermeasures that can not be circumvented. 
+\label{sec:implementation} 
 
 \subsection{Blocking \syscall{WriteProcessMemory} with a kernel mode driver}
-\begin{figure}[!htbp]
-\centering
-\includegraphics[angle=90,scale=0.6]{sections/implementation/interaction.png}
-\caption{The interaction of the drivers components}
-\label{fig:interaction}
-\end{figure}
-
-\newgeometry{margin=0mm,headheight=0mm,footskip=0mm,includehead,includefoot}
-\begin{figure*}[tb] 
- \centering
- \makebox[\textwidth]{\includegraphics[angle=90,width=.95\paperwidth]{sections/implementation/driver-sequence.png}}
-\caption{Sequence diagram showing the interaction between driver, Chrome and the windows kernel}
-\label{fig:sequence}
-\end{figure*}
-\restoregeometry
 The newly created problem with the modified \gls{ACL} can be solved by creating a driver running in kernel-mode. As reading memory, checking files and running processes are a common problem when writing anti virus software, Microsoft introduced object manager routines since Windows Vista to provide an efficient way of reacting onto these events. A driver will then use \syscall{ObRegisterCallbacks} to get notified whenever processes are created, files are opened and images (\glspl{DLL} and EXEs) are loaded. This functionality offers the programmer to create a pre- and post-execution callback function, that gets called whenever a process tries to receive a process handle. Microsoft offers an example driver using \syscall{ObRegisterCallbacks} at \cite{github_obcallback} and shows how to modify the requested process handle permissions to prevent termination by other applications such as the task manager. 
 
 In order to protect chrome, the same actions described earlier will now be taken from inside the driver. Newly created process handles will be restricted to non virtual memory modifying permissions and the existing problem with inter process communication can be resolved by not restricting chromes child processes explicitly and giving them a full access handle. Appendix \ref{appendix:driver} shows an implemented driver to fulfill the requirements.
