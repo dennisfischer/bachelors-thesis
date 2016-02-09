@@ -1,4 +1,4 @@
-\paragraph{\syscall{CreateRemoteThread} DLL Injection}
+\paragraph{\syscall{CreateRemoteThread} \gls{DLL} Injection}
 \glspl{DLL} can be loaded into a target process by loading its path into the target memory with \gls{WPM} and creating a new thread via \syscall{CreateRemoteThread} that calls \syscall{LoadLibrary}. This kind of attack can be used on any process running under the same integrity level and therefore is widely used in game cheating.
 
 \paragraph{Step 1} 
@@ -8,7 +8,7 @@ At first, a handle to the target process is requested via \syscall{OpenProcess} 
 A large enough amount of memory is allocated inside the target process with \syscall{VirtualAllocEx}, to hold the full path of the \gls{DLL}. 
 
 \paragraph{Step 3}
-Next \gls{WPM} is used to transfer the \gls{DLL} path into the target memory space.
+Next, \gls{WPM} is used to transfer the \gls{DLL} path into the target memory space.
 
 \paragraph{Step 4}
 The injection can be completed by calling \syscall{CreateRemoteThread}, which loads the \gls{DLL} with the \syscall{LoadLibrary} function. The allocated memory segment is used as a parameter for the \syscall{LoadLibrary} function call. 
@@ -17,4 +17,4 @@ The injection can be completed by calling \syscall{CreateRemoteThread}, which lo
 With the loaded \gls{DLL}, arbitrary code can get executed by the \gls{DLL} inside the attacked process, either via using \syscall{CreateRemoteThread} again or via the \glspl{DLL} entry point.
 
 
-An example of a basic \gls{DLL} injection using \gls{WPM} and \syscall{CreateRemoteThread} can be found in appendix \ref{appendix:writeprocessmemory}. Again, Chrome shows no existing defense mechanisms against direct memory modification.
+An example of a basic \gls{DLL} injection using \gls{WPM} and \syscall{CreateRemoteThread} can be found in appendix \ref{appendix:writeprocessmemory}.\emph{Chrome} shows no existing defense mechanisms against direct memory modification.

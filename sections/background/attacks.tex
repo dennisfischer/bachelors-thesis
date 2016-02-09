@@ -1,16 +1,16 @@
 \subsection{Attacks}
 \label{sec:attacks}
-This subsection will deal with existing attacks that can be used to gain control over a process, allowing to change values and code in memory as well as controlling which parts are executed. 
+This subsection will deal with existing attacks that can be used to gain control over a process, allowing to change values and code in memory as well as controlling which parts are executed. The attacks can be split into two groups, external and internal modifications. External modifications describe the attacks of Figure \ref{fig:attacks_external}. The difference of external and internal modifications is the starting point of the exploit. External modification attacks start their exploit from outside the targets process. This can be another process which uses \gls{API} functions or predefined \emph{Windows} structures that allow \gls{WPM}, \gls{DLL} Injection and Buffer Overflow attacks. In contrast, internal modification attacks start from inside the targets process with typical functions being system calls.
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=\textwidth,keepaspectratio]{sections/adtrees/ExternalModificationsWithoutDefenses.png}
 \caption{This attack tree shows all possible external attacks to the original software}
 \label{fig:attacks_external}
 \end{figure}
+\input{sections/background/attacks/writeprocessmemory.tex}
 \input{sections/background/attacks/appinit_dlls.tex}
 \input{sections/background/attacks/setwindowshookex.tex}
 \input{sections/background/attacks/dll_replacement.tex}
-\input{sections/background/attacks/writeprocessmemory.tex}
 \input{sections/background/attacks/buffer_overflows.tex}
 \input{sections/background/attacks/internal_modifications.tex}
 \input{sections/background/attacks/fig_attacks.tex}
