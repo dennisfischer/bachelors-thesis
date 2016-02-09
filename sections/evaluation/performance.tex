@@ -6,6 +6,8 @@ This section evaluates the performance of the driver and shows the impact on the
 The performance measurement was done in a \emph{VirtualBox}\footnote{\url{https://www.virtualbox.org/}} virtual machine running \emph{Windows 7 64 bit}. Table \ref{fig:hardware_host} shows the hardware used for the host computer. Table~\ref{fig:hardware_vm} shows the hardware assigned to the virtual machine. The virtual machine was stored on a RAID 1 setup with 50 GB of assigned storage. 
 \begin{table}
 \centering
+\caption{Hardware of the host system}
+\label{fig:hardware_host}
 \begin{tabularx}{\textwidth}{|l|X|}
 \hline
 Component & Used Hardware \\ \hline
@@ -16,19 +18,17 @@ SSD 1 & Mushkin Chronos 120 GB, 500 MB/s \\ \hline
 SSD 2 & San Disk Pro 480 GB, 500 MB/s \\ \hline
 RAID 1 & 2x Western Digital Caviar Green 2.5 TB, 170 MB/s \\ \hline
 \end{tabularx}
-\caption{Hardware of the host system}
-\label{fig:hardware_host}
 \end{table}
 \begin{table}
 \centering
+\caption{Assigned hardware of the virtual machine}
+\label{fig:hardware_vm}
 \begin{tabularx}{\textwidth}{|l|X|}
 \hline
 Component & Used Hardware \\ \hline
 CPU & Intel i7-2600k @ 3.5 GHz, 1 core, 2 threads \\ \hline
 RAM & 4 GB @ 1600 MHz \\ \hline
 \end{tabularx}
-\caption{Assigned hardware of the virtual machine}
-\label{fig:hardware_vm}
 \end{table}
 
 \subsubsection{General setup}

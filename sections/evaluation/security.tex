@@ -41,9 +41,10 @@ The first two points are cases related to \emph{Chrome's} inter process communic
 \paragraph{\gls{DLL} component}
 Finally the third part, the \gls{DLL} component, has to be evaluated to make sure that all previously mentioned attacks will be prevented. As \syscall{PsSetLoadImageNotifyRoutine} is called whenever a \gls{DLL} was mapped into virtual memory and suspending the process, no execution can occur until the callback has finished. With respect to generating the required sha256 hash, the driver is very restrictive and if a required function call fails, access is denied. Only in cases where a matching entry inside the whitelist is found, access is granted. Therefore, \glspl{DLL} not on the whitelist will get blocked in all other cases. Because of that, any of the previously mentioned attacks like \gls{DLL} injections or using \syscall{SetWindowsHookEx} will no longer work. As a result, the driver can be considered secure and code injection attacks are successfully prevented.
 \newgeometry{margin=0mm,headheight=0mm,footskip=0mm,includehead,includefoot}
+\pagestyle{plain}
 \begin{figure*}[h] 
  \centering
- \makebox[\textwidth]{\includegraphics[angle=90,keepaspectratio,width=.95\paperwidth,height=.85\paperheight]{sections/adtrees/ExternalModifications.png}}
+ \makebox[\textwidth]{\includegraphics[angle=90,keepaspectratio,width=.95\paperwidth,height=.9\paperheight]{sections/adtrees/ExternalModifications.png}}
 \caption{The attack tree of Figure~\ref{fig:attacks_external} with the added countermeasures}
 \label{fig:attacks_external_def}
 \end{figure*}

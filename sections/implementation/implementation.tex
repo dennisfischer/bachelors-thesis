@@ -11,19 +11,19 @@ Figure~\ref{fig:interaction} showed a high level overview of the interaction bet
 \restoregeometry
 \subsubsection{The Process Tree structure}
 A naive implementation that just checks for process' executable file name may result in an access gain for the attacker. In this case the attacker could rename itself to avoid the implemented countermeasure. To make the countermeasure unavoidable, a process tree structure is created, which tracks the actual \glspl{PID} to keep track of process hierarchies. The process tree structure stores processes into a linked list. Figure \ref{code:code1} shows the used code to define the process tree structure. Two structs are used, the first \syscall{\_PROCESS\_LIST\_ENTRY} represents parent processes of the list. The second, \syscall{\_PROCESS\_LIST\_ENTRY\_CHILD} represents child process of a parent process. The linked list structure is built by calling \syscall{InitializeListHead} \cite{msdn_initlisthead}.
-\begin{figure}[!p]
+\begin{figure}[h]
 \inputminted[breakanywhere, breaklines,fontsize=\scriptsize, frame=single, mathescape, linenos, numbersep=5pt, numbersep=5pt, xleftmargin=0pt]{c}{sections/implementation/code1.c}
 \caption{Process Tree base structure}
 \label{code:code1}
 \end{figure}
 Whenever the \emph{Windows} kernel calls \syscall{PsSetCreateProcessNotifyRoutineEx} entries are added to or removed from the linked list structure. Figure~\ref{code:code2} shows the method used for inserting such a process. At first, the process tree structure is searched for the given \gls{PID}. If the \gls{PID} is not part of the current process tree, a new entry is added. The list head for possible child processes needs to be initialized as well.
-\begin{figure}[!p]
+\begin{figure}[h]
 \inputminted[breakanywhere, breaklines,fontsize=\scriptsize, frame=single, mathescape, linenos, numbersep=5pt, numbersep=5pt, xleftmargin=0pt]{c}{sections/implementation/code2.c}
 \caption{InsertPidToTree routine of the process tree structure}
 \label{code:code2}
 \end{figure}
 Because the process tree is used for \gls{DLL} and \gls{WPM}, a special query method is used, \syscall{FindPidInTree}. This function searches the process tree to find an existing \gls{PID} and is represented in Figure~\ref{code:code3}. At first, all parents are checked. As most processes contain only a few or no children, this is faster than iterating over all processes at once. Only if no match is found, a one level deeper search is performed. This time, children are checked. If a match is found, the corresponding parent \gls{PID} is returned, or zero otherwise. The mapping of child \glspl{PID} to parent \glspl{PID} is important, to identify processes that are definitely allowed to do inter process communication.
-\begin{figure}[!p]
+\begin{figure}[h]
 \inputminted[breakanywhere, breaklines,fontsize=\scriptsize, frame=single, mathescape, linenos, numbersep=5pt, numbersep=5pt, xleftmargin=0pt]{c}{sections/implementation/code3.c}
 \caption{FindPidInTree routine of the process tree structure}
 \label{code:code3}
@@ -40,17 +40,17 @@ To make use of \syscall{PsSetLoadImageNotifyRoutine}, the \gls{IRQL} may not be 
 
 A solution can be found by using a second running thread, a so called work item, which execution is handled separately by the system. The advantage of this are the enabled special kernel mode \glspl{APC} and the possibility to freely change the \gls{IRQL} during execution. One major disadvantage of this way is, that some sort of thread synchronization between the work item and the initial callback function has to be introduced and thus resulting into driver typical busy waiting, which is still faster than non busy waiting and eventually occurring context changes. Figure~\ref{code:code4} shows code which is executed after the callback function is called. At first, it is checked if the target process is a chrome.exe process. Only in this case, further checks are done and in the other case, \gls{DLL} loading is permitted. The execution then continues with the code shown in Figure~\ref{code:code5}, which is greatly simplified. The complete function is defined in Appendix \ref{appendix:driver}. A file handle to the \gls{DLL} is obtained. Depending on the given input parameters to \syscall{PsSetLoadImageNotifyRoutine}, the given file path might be invalid. According to the \gls{MSDN} it is enough to use \syscall{ObOpenObjectByPointer} to get a file handle from a file object. As it turns out, this function is not working properly. The first call to \syscall{ObOpenObjectByPointer} succeeds and returns a valid file handle. All subsequent calls fail with \syscall{STATUS\_UNSUCCESSFUL}. Kernel debugging allows to find the reason of failure, which is an internal call to \syscall{ObpIncrementHandleCount} that returns \syscall{STATUS\_UNSUCCESFUL}. There can be found nothing with respect to this problem and it might be a bug inside the \emph{Windows} kernel itself. Therefore, manually path building is done which adds the corresponding drive letter and removes superfluous characters. Finally, after having a valid file handle, the file is read into memory and a sha256 \cite{eckert2014sicherheit} hash is generated, which is used later to compare it to a known whitelist of \gls{DLL} files.
 
-\begin{figure}[!p]
+\begin{figure}[h]
 \inputminted[breakanywhere, breaklines,fontsize=\scriptsize, frame=single, mathescape, linenos, numbersep=5pt, numbersep=5pt, xleftmargin=0pt]{c}{sections/implementation/code4.c}
 \caption{Code that checks if the target process is a chrome.exe process}
 \label{code:code4}
 \end{figure}
-\begin{figure}[!p]
+\begin{figure}[h]
 \inputminted[breakanywhere, breaklines,fontsize=\scriptsize, frame=single, mathescape, linenos, numbersep=5pt, numbersep=5pt, xleftmargin=0pt]{c}{sections/implementation/code5.c}
 \caption{The used hashing function to generate sha256 from \gls{DLL} files}
 \label{code:code5}
 \end{figure}
-\begin{figure}[!p]
+\begin{figure}[h]
 \inputminted[breakanywhere, breaklines,fontsize=\scriptsize, frame=single, mathescape, linenos, numbersep=5pt, numbersep=5pt, xleftmargin=0pt]{c}{sections/implementation/code6.c}
 \caption{The used patch function to destroy DLL files.}
 \label{code:code6}
@@ -64,7 +64,7 @@ Thus, the \gls{DLL} will only get patched, rendering it, although still residing
 
 \subsubsection{The WPM Component}
 The \gls{WPM} component uses as entry point a callback function registered with \syscall{ObRegisterCallback}. This callback function is called whenever a process handle is created. \syscall{ObRegisterCallbacks} allows to setup a pre- and post-execution callback to modify the permissions requested with the process handle. \emph{Microsoft} offers an example driver using \syscall{ObRegisterCallbacks} at \cite{github_obcallback} and shows how to modify the requested process handle permissions to prevent termination by other applications such as the task manager. In order to protect \emph{Chrome}, the same structure \emph{Microsoft} uses is used. Instead of preventing termination, the permissions of modifying a process virtual memory are removed. Figure \ref{code:code7} contains the code which is executed whenever the callback function is executed. At first, both processes, the target and the current one, need to be retrieved. Then several checks are done to see if the virtual memory modifications should be allowed. If the current and target processes have the same \gls{PID}, nothing is done. Otherwise a lookup in the Process Tree structure is done, to receive the corresponding parent \glspl{PID}. If the parent \glspl{PID} match, nothing is done. In case no match is found, the permission \syscall{PROCESS\_VM\_WRITE} is removed from the process handle and calls to \syscall{WriteProcessMemory} will fail.
-\begin{figure}[!p]
+\begin{figure}[h]
 \inputminted[breakanywhere, breaklines,fontsize=\scriptsize, frame=single, mathescape, linenos, numbersep=5pt, numbersep=5pt, xleftmargin=0pt]{c}{sections/implementation/code7.c}
 \caption{The used callback function to detect virtual memory modifications.}
 \label{code:code7}
