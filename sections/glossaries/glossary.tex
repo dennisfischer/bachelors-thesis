@@ -1,7 +1,7 @@
 \newglossaryentry{MSDN}
 {
   name={MSDN},
-  description={The Microsoft Developer Network is a central place for windows application programmers. It contains detailed information about the Windows environment and documentation about the exported Windows API functions},
+  description={The Microsoft Developer Network is a central place for \emph{Windows} application programmers. It contains detailed information about the \emph{Windows} environment and documentation about the exported \emph{Windows} API functions},
   first={Microsoft Developer Network (MSDN)},
   long={Microsoft Developer Network}
 }
@@ -29,7 +29,7 @@
 \newglossaryentry{EULA}
 {
   name={EULA},
-  description={The End User License Agreement is a contract between a company and a user. It is widely used in software to make a legal contract},
+  description={The End User License Agreement is a contract between a company and a user. It is widely used in software deployment to make a legal contract},
   first={End User License Agreement (EULA)},
   long={End User License Agreement}
 }
@@ -50,28 +50,28 @@
 \newglossaryentry{WPM}
 {
   name={WPM},
-  description={\syscall{WriteProcessMemory} is an exported function of the Windows API. This function allows memory modification of another process. A process handle with \syscall{PROCESS\_VM\_WRITE} permissions is required to use this function},
+  description={\syscall{WriteProcessMemory} is an exported function of the \emph{Windows} API. This function allows memory modification of another process. A process handle with \syscall{PROCESS\_VM\_WRITE} permissions is required to use this function},
   first={\syscall{WriteProcessMemory} (WPM)},
   long={\syscall{WriteProcessMemory}}
 }
 \newglossaryentry{ASLR}
 {
   name={ASLR},
-  description={Address Space Layout Randomization is a defense against buffer overflow exploits which is described in Section \ref{sec:aslr}},
+  description={Address Space Layout Randomization is a defense against buffer overflow exploits which is described in Section~\ref{sec:aslr}},
   first={Address Space Layout Randomization (ASLR)},
   long={Address Space Layout Randomization}
 }
 \newglossaryentry{DEP}
 {
   name={DEP},
-  description={Data Execution Prevention is a security feature to prevent buffer overflow exploits. It is described in Section \ref{sec:dep}},
+  description={Data Execution Prevention is a security feature to prevent buffer overflow exploits. It is described in Section~\ref{sec:dep}},
   first={Data Execution Prevention (DEP)},
   long={Data Execution Prevention}
 }
 \newglossaryentry{MIC}
 {
   name={MIC},
-  description={Mandatory Integrity Control is a security model found on Windows systems. It is described in Section \ref{sec:mic}},
+  description={Mandatory Integrity Control is a security model found on \emph{Windows} systems. It is described in Section~\ref{sec:mic}},
   first={Mandatory Integrity Control (MIC)},
   long={Mandatory Integrity Control}
 }
@@ -99,14 +99,14 @@
 \newglossaryentry{IRQL}
 {
   name={IRQL},
-  description={The Interrupt Request Level is used inside Windows Kernel programming. Interrupts can be signaled by different hardware components like a hard disk drive. If the IRQL is raised high enough, such Interrupts will not occur for the currently executed code},
+  description={The Interrupt Request Level is used inside \emph{Windows Kernel} programming. Interrupts can be signaled by different hardware components like a hard disk drive. If the IRQL is raised high enough, such Interrupts will not occur for the currently executed code},
   first={Interrupt Request Level (IRQL)},
   long={Interrupt Request Level}
 }
 \newglossaryentry{APC}
 {
   name={APC},
-  description={An asynchronous procedure call is a function that is executed asynchronously in the context of another thread. Inside the Kernel, it is used to deliver signals for important events like the end of a file read operation. Disabling APCs can lead to a deadlock},
+  description={An asynchronous procedure call is a function that is executed asynchronously in the context of another thread. Inside the kernel, it is used to deliver signals for important events like the end of a file read operation. Disabling APCs can lead to a deadlock},
   first={Asynchronous Procedure Call (APC)},
   long={Asynchronous Procedure Call}
 }

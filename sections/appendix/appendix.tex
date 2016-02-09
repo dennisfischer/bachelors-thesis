@@ -2,27 +2,26 @@
 \label{sec:appendix}
 \section{Example DLL Injection with \syscall{SetWindowsHookEx}}
 \label{appendix:setwindowshookex}
-The following code shows a DLL injection using the \syscall{SetWindowsHookEx} function.
+The following code shows a \gls{DLL} injection using the \syscall{SetWindowsHookEx} function.
 \input{sections/appendix/setwindowshookex.tex}
 
 \section{Example DLL Injection with \syscall{WriteProcessMemory}}
 \label{appendix:writeprocessmemory}
-The following code shows a DLL injection using the \syscall{WriteProcessMemory} function.
+The following code shows a \gls{DLL} injection using the \syscall{WriteProcessMemory} function.
 \input{sections/appendix/writeprocessmemory.tex}
 
 \section{Toy-malware to show an attack on Google Chrome}
 \label{appendix:toymalware}
-The following code is a toy malware, which is compiled to a DLL file. Thus, as soon as loaded into Chrome, gains full access to the virtual memory.
+The following code is a toy malware, which is compiled to a \gls{DLL} file. Thus, as soon as loaded into \emph{Chrome}, gains full access to the virtual memory.
 \input{sections/appendix/toymalware.tex}
 
 \section{DACL Testing Application}
 \label{appendix:dacl}
-The following shows the minimum required code for setting a DACL to prevent \syscall{WriteProcessMemory} calls.
+The following shows the minimum required code for setting up a \gls{ACE} to prevent \syscall{WriteProcessMemory} calls.
 \input{sections/appendix/dacl_test_application.tex}
 
 \section{Driver Program}
 \label{appendix:driver}
 In the following sections, the result of the Design and Implementation task, a driver is shown, created in the C programming language.
 \input{sections/appendix/driver.tex}
-
 \end{appendices}

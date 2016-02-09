@@ -1,9 +1,9 @@
 \subsection{Performance}
 \label{sec:performance}
-This section evaluates the performance of the driver and shows the impact on the Google Chrome browser. At first, the impact on Chrome is measured. Then, the time needed for hashing a \gls{DLL} file is measured.
+This section evaluates the performance of the driver and shows the impact on the \emph{Google Chrome} browser. At first, the impact on \emph{Chrome} is measured. Then, the time needed for hashing a \gls{DLL} file is measured.
 
 \subsubsection{Hardware}
-The performance measurement was done in a VirtualBox\footnote{\url{https://www.virtualbox.org/}} virtual machine running Windows 7 64 bit. Table \ref{fig:hardware_host} shows the hardware used for the host computer. Table \ref{fig:hardware_vm} shows the hardware assigned to the virtual machine. The virtual machine was stored on a RAID 1 setup with 50 GB of assigned storage. 
+The performance measurement was done in a \emph{VirtualBox}\footnote{\url{https://www.virtualbox.org/}} virtual machine running \emph{Windows 7 64 bit}. Table \ref{fig:hardware_host} shows the hardware used for the host computer. Table~\ref{fig:hardware_vm} shows the hardware assigned to the virtual machine. The virtual machine was stored on a RAID 1 setup with 50 GB of assigned storage. 
 \begin{table}
 \centering
 \begin{tabularx}{\textwidth}{|l|X|}
@@ -19,7 +19,6 @@ RAID 1 & 2x Western Digital Caviar Green 2.5 TB, 170 MB/s \\ \hline
 \caption{Hardware of the host system}
 \label{fig:hardware_host}
 \end{table}
-
 \begin{table}
 \centering
 \begin{tabularx}{\textwidth}{|l|X|}
@@ -33,7 +32,7 @@ RAM & 4 GB @ 1600 MHz \\ \hline
 \end{table}
 
 \subsubsection{General setup}
-The experiments used Google Chrome version 48.0.2564.97 m and disabled several services of the Windows operating system to get more accurate test results. Windows Defender, Windows Search and Windows Update were disabled for both, host and guest machine. Every test was executed ten times for each possible configuration.
+The experiments used \emph{Google Chrome} version \emph{48.0.2564.97 m} and disabled several services of the \emph{Windows} operating system to get more accurate test results. \emph{Windows Defender}, \emph{Windows Search} and \emph{Windows Update} were disabled for both, host and guest machine. Every test was executed ten times for each possible configuration.
 
 \input{sections/evaluation/performance/experiment1.tex}
 \clearpage
