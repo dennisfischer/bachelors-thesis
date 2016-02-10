@@ -1,22 +1,24 @@
 \subsubsection{\emph{Registry}}
-Storing important configuration data on \emph{Windows} is done through the so called \emph{Registry}. The \emph{Registry} stores information on a key-value basis and all configuration of \emph{Windows} and most applications can be found in it. The \emph{Registry} has one major advantage in performance compared to the classic approach to store configuration information in \syscall{INI} files. Whenever a key gets changed, the \syscall{INI} file gets loaded into memory, modified and written back to the disk. This is not needed for changing values in the \emph{Registry}, as the \emph{Registry} is already loaded during system start into memory and made changes are written with a delay to disk. Additionally, the \emph{Registry} improves handling of multi user setups, which is hardly possible with a single \syscall{INI} file. To give the registry an initial layout, six major groups are defined by \emph{Windows 7}:
+Storing important configuration data on \emph{Windows} is done through the so called \emph{Registry}. The \emph{Registry} stores information on a key-value basis and all configuration of \emph{Windows} and most applications can be found in it. The \emph{Registry} has one major advantage in performance compared to the classic approach to store configuration information in \syscall{INI} files. Whenever a key gets changed, the \syscall{INI} file gets loaded into memory, modified and written back to the disk. This is not needed for changing values in the \emph{Registry}. The \emph{Registry} is already loaded during system start into memory and made changes are written with a delay to disk. Additionally, the \emph{Registry} improves handling of multi user setups, which is hardly possible with a single \syscall{INI} file. To give the registry an initial layout, six major groups are defined by \emph{Windows 7}:
 \begin{itemize}
 \label{sec:registrykeys}
 \item HKEY\_LOCAL\_MACHINE
 
-Contains information about the computer configuration
+Contains information about the computer's configuration
 \item HKEY\_CURRENT\_CONFIG
 
 Contains information about the used hardware
 \item HKEY\_CLASSES\_ROOT
 
-Is a subkey of HKEY\_LOCAL\_MACHINE\\Software and contains file extension associations
+Is a subkey of HKEY\_LOCAL\_MACHINE\textbackslash Software and contains file extension associations
 \item HKEY\_CURRENT\_USER 
 
 Contains the profile of the currently logged on user
 \item HKEY\_USERS
 
 Contains the profiles of all active users
-\item HKEY\_PERFORMANCE\_DATA (invisble in \syscall{regedit.exe})
+\item HKEY\_PERFORMANCE\_DATA
+
+Is invisble in \syscall{regedit.exe}
 \end{itemize}
 To access the \emph{Registry} by a user, the \syscall{regedit.exe} \cite{msdn_regedit} program can be used. Of the given six groups, only five can actually be seen, as the \syscall{HKEY\_PERFORMANCE\_DATA} is invisible in the \emph{Registry Editor}. Some keys may require additional permissions like administrator privileges to be accessible and changeable. This is a result of the previously explained security descriptor in Section~\ref{sec:sd}.
