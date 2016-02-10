@@ -1,0 +1,4 @@
+To build the latex document use following command:
+pdflatex -synctex=1 -interaction=nonstopmode %.tex --shell-escape|biber build\% -input-directory=build|pdflatex -synctex=1 -interaction=nonstopmode %.tex --shell-escape|makeglossaries -d build thesis|pdflatex -synctex=1 -interaction=nonstopmode %.tex --shell-escape|"C:/Program Files/Adobe/Reader 11.0/Reader/AcroRd32.exe" %.pdf
+
+Pygments -> python and Perl installation is required!
