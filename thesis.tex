@@ -34,9 +34,9 @@
 \lstset{basicstyle=\ttfamily}
 
 \newcommand{\codefile}[2]{
+\captionsetup{type=figure}
 \label{code:\detokenize{#2}}
 \captionof{listing}{Code from \detokenize{#2}}
-\captionsetup{type=figure}
 \inputminted[breakanywhere, breaklines,fontsize=\scriptsize, frame=single, mathescape, linenos, numbersep=5pt, numbersep=5pt, xleftmargin=0pt]{c}{SourceCode/\detokenize{#1#2}}
 }
 
