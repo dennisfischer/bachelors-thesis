@@ -55,6 +55,16 @@
 
 \loadglsentries{sections/glossaries/glossary.tex}
 \makeglossaries
+
+\usepackage[%
+  backend=biber    
+ ,style=numeric 
+ ,isbn=true
+ ,url=true
+ ,maxnames=5
+ ,block=none
+]{biblatex}
+\bibliography{references.bib}
 \begin{document}
 %\sloppy
 \include{sections/_meta/cover}
@@ -97,8 +107,8 @@
 \cleardoublepage
 \phantomsection
 \addcontentsline{toc}{section}{References}
-\bibliography{references}
-\bibliographystyle{plain}
+\printbibliography
+
 % PUT Appendix here!
 
 \include{sections/appendix/appendix}
