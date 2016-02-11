@@ -1,6 +1,6 @@
 \subsubsection{Profiling Tool}
 \label{sec:profiler}
-\emph{Chrome} and especially the development version \emph{Chromium} offer several ways to do various different kinds of performance profiling. Most of the profiling tools focus on performance of actual website loads. \emph{about:profiler} or synonymously \emph{chrome://profiler} is a built in website which displays the results of \emph{Chromes} internal performance measurement. The internal profiler measures the execution time of tasks. Tasks are asynchronously executed functions and therefore run in different threads. The time of execution is measured in milliseconds and for each executed function the number of executions as well as the total, average and maximum run- and queuetime are tracked, which are described in Table \ref{fig:ex1_info}. The profiler will be used for the performance measurement of Section~\ref{sec:performance}.
+\emph{Chrome} and especially the development version \emph{Chromium} offer several ways to do various different kinds of performance profiling. Most of the profiling tools focus on performance of actual website loads. \emph{about:profiler} or synonymously \emph{chrome://profiler} is a built in website which displays the results of \emph{Chromes} internal performance measurement. The internal profiler measures the execution time of tasks. Tasks are asynchronously executed functions and therefore run in different threads. The time of execution is measured in milliseconds and for each executed function the number of executions as well as the total, average and maximum run- and queue time are tracked, which are described in Table \ref{fig:ex1_info}. The profiler will be used for the performance measurement of Section~\ref{sec:performance}.
 \begin{table}
 \caption{Description of measured information}
 \label{fig:ex1_info}
@@ -8,8 +8,8 @@
 \hline
 Information & Meaning \\ \hline
 Count & The number of tasks that were executed \\ \hline
-Queuetime & The time between task creation and its execution in milliseconds \\ \hline
-Runtime & The time required to execute the task in milliseconds \\ \hline
+Queue time & The time between task creation and its execution in milliseconds \\ \hline
+Run time & The time required to execute the task in milliseconds \\ \hline
 Total & The sum of all values \\ \hline
 Maximum & The maximum of all values \\ \hline
 Average & The quotient of total and count \\ \hline
