@@ -5,7 +5,7 @@
 \usepackage{graphicx}
 \usepackage{import}
 \usepackage{listings}
-\usepackage{minted}
+\usepackage[draft]{minted}
 \usepackage{caption}
 \usepackage{url}
 \usepackage{courier}
@@ -15,6 +15,8 @@
 \usepackage[toc,page]{appendix}
 \usepackage[toc]{glossaries}
 \usepackage[htt]{hyphenat}
+\usepackage{tikz}
+\usetikzlibrary{graphdrawing.trees}
 
 \usepackage[
 	% Prevent hyperlinks from getting an ugly border
@@ -26,7 +28,7 @@
     pdfsubject={TBD},
     pdfkeywords={dll injection, code injection, injection, driver, kernelmode driver, process, writeprocessmemory, setwindowshookex, setwindowshook, dacl, acl, ace, mic, dep, aslr, changeware, memory, tampering, detection, dll}
 ]{hyperref}
-\usepackage{sections/_meta/tumlogo}
+\usepackage{sections/meta/tumlogo}
 
 % Use appropriate font size for line numbers in listings
 \renewcommand{\theFancyVerbLine}{{\small\arabic{FancyVerbLine}}}
@@ -51,6 +53,7 @@
 \def\author{Dennis Fischer}
 \def\date{Februar 15, 2016}
 
+\def\include#1{\clearpage\input{#1}}
 
 \loadglsentries{sections/glossaries/glossary.tex}
 \makeglossaries
@@ -60,21 +63,22 @@
  ,style=numeric 
  ,isbn=true
  ,url=true
+ ,doi=false
  ,maxnames=5
  ,block=none
 ]{biblatex}
 \bibliography{references.bib}
 \begin{document}
-\include{sections/_meta/cover}
-\include{sections/_meta/page-1}
-\include{sections/_meta/single-handed-composition}
+\include{sections/meta/cover}
+\include{sections/meta/page-1}
+\include{sections/meta/single-handed-composition}
 
 \newpage
 \thispagestyle{empty}
 \null
 
-\include{sections/_meta/acknowledgment}
-\include{sections/_meta/abstract}
+\include{sections/meta/acknowledgment}
+\include{sections/meta/abstract}
 
 \newpage
 \pagestyle{plain}

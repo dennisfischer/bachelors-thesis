@@ -1,9 +1,20 @@
 \subsection{Design and Architecture}
 The attacks of Section~\ref{sec:attacks} can be classified into two groups which have to be handled separately in order to increase security on the target platform. Attacks to the process virtual memory that have to use \gls{WPM}, which form the first group and attacks that are relying on a \gls{DLL} load during their initialization to execute their malicious code, which form the second group. This classification makes it possible to design effective countermeasures that can not be bypassed by attacks. The classification into the two groups, \gls{DLL} and \gls{WPM}, is used to for the architecture design. Figure~\ref{fig:interaction} shows the interacting components in an abstract representation. \emph{Windows} offers three entry points that will get called by the kernel, whenever a process is started, opened or a \gls{DLL} is loaded. The registered callback functions will then need to do several checks on the given information and based on this allow or deny execution.
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.6]{sections/implementation/listoflists.png}
-\caption{The process tree structure. A list of parent processes with their children}
+\begin{figure}
+\begin{tikzpicture}[sibling distance=10em,
+  every node/.style = {shape=rectangle, rounded corners,
+    draw, align=center,
+    top color=white, bottom color=blue!20}]]
+  \node {Root}
+    child { node {chrome.exe\\(PID 2460)} 
+		child { node {chrome.exe\\(PID 3812)}}
+		child { node {chrome.exe\\(PID 3921)}}
+		child { node {chrome.exe\\(PID 2633)}}    
+    }
+    child { node {explorer.exe\\(PID 756)} }
+    child { node {lsass.exe\\(PID 217)} };
+\end{tikzpicture}
+\caption{An example for the Process Tree Structure}
 \label{fig:listoflists}
 \end{figure}
 \begin{figure}[!p]
