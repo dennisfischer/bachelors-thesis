@@ -1,0 +1,12 @@
+\subsection{Limitations}
+This section describes the limitations for the proposed solution.
+\subsubsection{Required Privileges}
+The implemented kernelmode driver requires root privileges during installation. This is most likely not a problem during deployment of the vendor's application as root privileges are needed for most installations anyway. However, future changes to the driver and its deployed updates will again require root privileges, which might be no longer present. Additionally, a certificate is needed to sign the driver. Otherwise \emph{Windows} will refuse to install the driver.
+\subsubsection{DLL Hash Caching}
+The proposed solution has a performance overhead during \gls{DLL} hashing. This is because every \gls{DLL} might get hashed multiple times, despite no actual changes to the file. In some cases, the \gls{DLL} might also get hashed multiple times for the same process. 
+\subsubsection{Process Identification}
+Identification of a process is not easily possible in the current solution. The proposed solution uses the executable's file name which can be changed by the attacker. Even generating a hash over this file will not be enough to identify the process that should receive \gls{PMT} protection. 
+\subsubsection{Driver Extension to Other Processes}
+The proposed solution currently only works for \emph{Google Chrome}. The driver uses hard coded values to identify a \emph{Chrome} process and will not work on other processes without further extension.
+\subsubsection{Driver to Process Communication}
+Updating of an application like \emph{Google Chrome} is currently not possible because the proposed solution uses a hard coded whitelist. A dynamic whitelist would be beneficial but will require communication between the driver and the application.
