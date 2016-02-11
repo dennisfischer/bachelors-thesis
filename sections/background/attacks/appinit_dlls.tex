@@ -1,4 +1,4 @@
-\subsubsection{\emph{Registry} based injection}
+\subsubsection{\emph{Registry} Based Injection}
 \emph{Registry} based injection uses a special \emph{Registry} key\footnote{The \emph{Registry} key can be found at \syscall{HKEY\_LOCAL\_MACHINE\textbackslash Software\textbackslash Microsoft\textbackslash\allowbreak Windows NT\textbackslash CurrentVersion\textbackslash Windows}} that can be used to inject \gls{DLL} files into almost any process. For that reason the shown attack tree in Figure~\ref{fig:attacks_external} lists this technique under the group of \gls{DLL} injections in node [1.2.1]. \glspl{DLL} can be added by writing the full path to the file into this \emph{Registry} key, with multiple paths separated by semicolons. To make this injection technique work, two conditions have to apply:
 \begin{enumerate}
 \item The \gls{DLL} file is having a security descriptor that allows execution. Otherwise the \gls{DLL} will not get loaded into the target process.

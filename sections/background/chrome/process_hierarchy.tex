@@ -1,4 +1,4 @@
-\subsubsection{Process hierarchy}
+\subsubsection{Process Hierarchy}
 \emph{Google Chrome} uses a special process hierarchy to reduce the risk of an attack onto the browser. \emph{Chrome} creates multiple processes to isolate different contexts. A context can represent a (web-)site, a site instance or a tab \cite{chromium_process_models}. Depending on the chosen command line flag, the respective context is chosen and processes are created. To share data between the processes, inter process communication is used.
 \begin{figure}[h]
 \centering

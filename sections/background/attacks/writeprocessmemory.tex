@@ -1,4 +1,4 @@
-\subsubsection{\syscall{WriteProcessMemory} external modifications}
+\subsubsection{\syscall{WriteProcessMemory} External Modifications}
 \gls{WPM} is a function available through the \emph{Windows} \gls{API}. This function allows to write into the virtual memory of a target process and allows modification of existing data or code. There are several ways to make use of this function. \gls{WPM} is used for \gls{DLL} injection with the \syscall{CreateRemoteThread} function, code modification and function detouring. This method can be found in Figure~\ref{fig:attacks_external} in node [1.1].
 \input{sections/background/attacks/writeprocessmemory/createremotethread.tex}
 \input{sections/background/attacks/writeprocessmemory/writeprocessmemory.tex}

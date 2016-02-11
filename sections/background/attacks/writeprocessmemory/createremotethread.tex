@@ -2,7 +2,7 @@
 \glspl{DLL} can be loaded into a target process by loading their path into the target memory with \gls{WPM} and creating a new thread via \syscall{CreateRemoteThread} that calls \syscall{LoadLibrary}. This kind of attack can be used on any process running under the same integrity level and therefore is widely used in game cheating.
 
 \paragraph{Step 1} 
-At first, a handle to the target process is requested via \syscall{OpenProcess} with \syscall{PROCESS\_VM\_WRITE} and \syscall{PROCESS\_VM\_OPERATION} access rights. These access right are required to execute the \gls{WPM} function. If the permissions are missing, \gls{WPM} is not able to modify the virtual memory of the target process. Virtual memory protection flags do not have to be changed manually, as this is already happening inside \gls{WPM}. 
+At first, a handle to the target process is requested via \syscall{OpenProcess} with \syscall{PROCESS\_VM\_WRITE} and \syscall{PROCESS\_VM\_OPERATION} access rights. These access rights are required to execute the \gls{WPM} function. If the permissions are missing, \gls{WPM} is not able to modify the virtual memory of the target process. Virtual memory protection flags do not have to be changed manually, as this is already happening inside \gls{WPM}. 
 
 \paragraph{Step 2} 
 A large enough amount of memory is allocated inside the target process with \syscall{VirtualAllocEx}, to hold the full path of the \gls{DLL}. 
