@@ -4,7 +4,7 @@ This section evaluates the performance of the driver and shows the impact on the
 
 \subsubsection{Hardware}
 The performance measurement was done in a \emph{VirtualBox}\footnote{\url{https://www.virtualbox.org/}} virtual machine running \emph{Windows 7 64 bit}. Table~\ref{fig:hardware_host} shows the hardware used for the host computer. Table~\ref{fig:hardware_vm} shows the hardware assigned to the virtual machine. The virtual machine was stored on a RAID 1 setup with 50 GB of assigned storage. 
-\begin{table}
+\begin{table}[bh]
 \centering
 \caption{Hardware of the host system}
 \label{fig:hardware_host}
@@ -19,7 +19,7 @@ SSD 2 & San Disk Pro 480 GB, 500 MB/s \\ \hline
 RAID 1 & 2x Western Digital Caviar Green 2.5 TB, 170 MB/s \\ \hline
 \end{tabularx}
 \end{table}
-\begin{table}
+\begin{table}[bh]
 \centering
 \caption{Assigned hardware of the virtual machine}
 \label{fig:hardware_vm}
@@ -32,7 +32,21 @@ RAM & 4 GB @ 1600 MHz \\ \hline
 \end{table}
 
 \subsubsection{General setup}
-The experiments used \emph{Google Chrome} version \emph{48.0.2564.97 m} and disabled several services of the \emph{Windows} operating system to get more accurate test results. \emph{Windows Defender}, \emph{Windows Search} and \emph{Windows Update} were disabled for both, host and guest machine. Every test was executed ten times for each possible configuration.
+The experiments used \emph{Google Chrome} version \emph{48.0.2564.97 m} and disabled several services of the \emph{Windows} operating system to get more accurate test results. \emph{Windows Defender}, \emph{Windows Search} and \emph{Windows Update} were disabled for both, host and guest machine. Every test was executed ten times for each possible configuration. The information was acquired with \emph{Chrome's} internal profiler as discussed in Section~\ref{sec:profiler}. The measured data is described in Table~\ref{fig:ex1_duplicate}.
+\begin{table}[hb]
+\caption{This is a duplicate of Table~\ref{fig:ex1_info} of Section~\ref{sec:profiler} for the convenience of the reader}
+\label{fig:ex1_duplicate}
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+Information & Meaning \\ \hline
+Count & The number of tasks that were executed \\ \hline
+Queuetime & The time between task creation and its execution in milliseconds \\ \hline
+Runtime & The time required to execute the task in milliseconds \\ \hline
+Total & The sum of all values \\ \hline
+Maximum & The maximum of all values \\ \hline
+Average & The quotient of total and count \\ \hline
+\end{tabularx}
+\end{table}
 
 \input{sections/evaluation/performance/experiment1.tex}
 \clearpage
