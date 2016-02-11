@@ -1,7 +1,9 @@
 \subsection{Limitations}
 This section describes the limitations for the proposed solution.
-\subsubsection{Required Privileges}
+\subsubsection{Required Privileges for Installation}
 The implemented kernel mode driver requires root privileges during installation. This is most likely not a problem during deployment of the vendor's application as root privileges are needed for most installations anyway. However, future changes to the driver and its deployed updates will again require root privileges, which might be no longer present. Additionally, a certificate is needed to sign the driver. Otherwise \emph{Windows} will refuse to install the driver.
+\subsubsection{Required Privileges for Execution}
+The kernel mode driver is running at root level and as such has access to almost all files. Privileges to start execution are at least required once during installation. Elevated permissions will only be required if the driver should be stopped or started after the system boot. The driver will due to its permission detect all user mode attacks. However, against attacks from root kits, nothing can be done. Malicious software that was present before installation of the driver may also not be detected in all situations.
 \subsubsection{DLL Hash Caching}
 The proposed solution has a performance overhead during \gls{DLL} hashing. This is because every \gls{DLL} might get hashed multiple times, despite no actual changes to the file. In some cases, the \gls{DLL} might also get hashed multiple times for the same process. 
 \subsubsection{Process Identification}
