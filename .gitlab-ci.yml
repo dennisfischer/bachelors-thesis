@@ -1,5 +1,5 @@
 compile_pdf:
-  image: aergus/latex
+  image: latex
   script:
     - latexmk -pdf -pdflatex="lualatex --shell-escape %O %S" thesis.tex
   artifacts:
