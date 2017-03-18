@@ -1,7 +1,7 @@
 compile_pdf:
   image: aergus/latex
   script:
-    - latexmk -pdf thesis.tex
+    - latexmk -pdf -pdflatex="pdflatex --shell-escape %O %S" thesis.tex
   artifacts:
     name: "${CI_PROJECT_NAME}_${CI_BUILD_REF_NAME}"
     expire_in: 1 week  
