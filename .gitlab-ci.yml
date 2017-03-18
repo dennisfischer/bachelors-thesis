@@ -1,5 +1,5 @@
 compile_pdf:
-  image: latex
+  image: dennisfischer/latex
   script:
     - latexmk -pdf -pdflatex="lualatex --shell-escape %O %S" thesis.tex
   artifacts:
