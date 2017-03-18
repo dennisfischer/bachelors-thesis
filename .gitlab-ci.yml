@@ -1,7 +1,7 @@
 compile_pdf:
   image: dennisfischer/latex
   script:
-    - latexmk -pdf -pdflatex="lualatex --shell-escape %O %S" thesis.tex
+    - latexmk -pdf -pdflatex="pdflatex --shell-escape %O %S" thesis.tex
   artifacts:
     name: "${CI_PROJECT_NAME}_${CI_BUILD_REF_NAME}"
     expire_in: 1 week  
