@@ -1,5 +1,5 @@
 @echo off
-lualatex -synctex=1 -shell-escape -interaction=nonstopmode -output-directory=build thesis.tex
-biber build/thesis.bcf
+rem pdflatex -synctex=1 -shell-escape -interaction=nonstopmode -output-directory=build thesis.tex
+rem biber build/thesis.bcf
 makeglossaries -d build thesis
-lualatex -synctex=1 -shell-escape -interaction=nonstopmode -output-directory=build thesis.tex
+rem pdflatex -synctex=1 -shell-escape -interaction=nonstopmode -output-directory=build thesis.tex
