@@ -1,15 +1,15 @@
 [submodule "SourceCode/dll-injector"]
 	path = SourceCode/dll-injector
-	url = git@github.com:dennisfischer/dll-injector.git
+	url = ../dll-injector.git
 [submodule "SourceCode/dll-injector-sample"]
 	path = SourceCode/dll-injector-sample
-	url = git@github.com:dennisfischer/dll-injector-sample.git
+	url = ../dll-injector-sample.git
 [submodule "SourceCode/ProcessDACL"]
 	path = SourceCode/ProcessDACL
-	url = git@github.com:dennisfischer/ProcessDACL.git
+	url = ../ProcessDACL.git
 [submodule "SourceCode/TLS-Callback"]
 	path = SourceCode/TLS-Callback
-	url = git@github.com:dennisfischer/TLS-Callback.git
+	url = ../TLS-Callback.git
 [submodule "SourceCode/ProcessProtectionDriver"]
 	path = SourceCode/ProcessProtectionDriver
-	url = git@github.com:dennisfischer/ProcessProtectionDriver.git
+	url = ../ProcessProtectionDriver.git
